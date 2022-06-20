@@ -1,17 +1,16 @@
-<div class="sticky">
-    <mat-toolbar color="primary">
-        <span>DT Rating System</span>
-    </mat-toolbar>
-    <mat-toolbar-row class="flex gap-3 mat-elevation-z3">
-        <button mat-button>Basic</button>
-        <button mat-button>Basic</button>
-        <button mat-button>Basic</button>
-    </mat-toolbar-row>
-</div>
-<div class="pb-8"></div>
-<div>
-
-</div>
-<div class="flex relative bg-black">
-
+<!-- End of Appbar -->
+<div class="flex flex-col relative bg-black text-white">
+  <div class="absolute top-3 right-3 transform -translate-x-25 bg-white/50 p-1 hover:bg-white hover:text-black transition-all">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"
+      />
+    </svg>
+  </div>
+  <div *ngFor="let item of items">{{ item }}</div>
 </div>
