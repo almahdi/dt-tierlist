@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { InputsFormComponent } from 'src/app/components/inputs-form.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatButtonModule} from '@angular/material/button';
 import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export interface ICategory {
@@ -21,8 +22,9 @@ export interface ICategory {
     CommonModule,
     ReactiveFormsModule,
     MatChipsModule,
+    MatButtonModule,
     InputsFormComponent,
-    DragDropModule
+    DragDropModule,
   ],
 })
 export class MainPageComponent {
@@ -31,7 +33,7 @@ export class MainPageComponent {
     {
       name: 'Great',
       color: '#eb3333',
-      items: ["tttt"],
+      items: ["tttt", "vvvv"],
     },
     {
       name: 'Good',
