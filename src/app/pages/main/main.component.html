@@ -1,5 +1,5 @@
 <!-- Data Form -->
-<app-inputs-form></app-inputs-form>
+<app-inputs-form (itemsChanged)="itemsChangedHandler($event)"></app-inputs-form>
 <!-- Rating Component -->
 <div class="flex relative flex-col text-white bg-black">
   <div
@@ -26,9 +26,6 @@
     <div class="col-span-11"></div>
   </div>
   <div class="bg-[#5a1900] h-40 text-4xl flex gap-4 p-3">
-    <mat-chip class="text-4xl">test</mat-chip>
-    <mat-chip>test</mat-chip>
-    <mat-chip>test</mat-chip>
-    <mat-chip>test</mat-chip>
+    <mat-chip *ngFor="let item of items">{{item}}</mat-chip>
   </div>
 </div>

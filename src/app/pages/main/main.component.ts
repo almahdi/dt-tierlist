@@ -18,13 +18,13 @@ export interface ICategory {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    InputsFormComponent,
     MatChipsModule,
+    InputsFormComponent,
   ],
 })
 export class MainPageComponent {
-  items: String[] = [];
-  categories: ICategory[] = [
+  items: String[] = []; /* Items passed from the child component */
+  categories: ICategory[] = [ /* List of Categories, shall be customizable later with a form, but for now, its a variable */
     {
       name: 'Great',
       color: '#eb3333',
@@ -46,10 +46,16 @@ export class MainPageComponent {
       color: '#3aa3a9',
     },
   ];
+  constructor(private doms: DomSanitizer) {}
+
   getStyle(category: ICategory) {
     return this.doms.bypassSecurityTrustStyle(
       `background-color: ${category.color};`
     );
   }
-  constructor(private doms: DomSanitizer) {}
+
+  itemsChangedHandler(items: String[]) {
+    this.items = [...items];
+  }
+
 }

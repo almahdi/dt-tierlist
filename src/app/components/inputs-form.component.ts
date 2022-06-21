@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -7,28 +12,28 @@ import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
-
-
 @Component({
   selector: 'app-inputs-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-<mat-form-field class="w-full" appearance="fill">
-  <mat-label>Items List</mat-label>
-  <mat-chip-list #chipList aria-label="Fruit selection">
-    <mat-chip *ngFor="let item of items" (removed)="remove(item)">
-      {{item}}
-      <button matChipRemove>
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </mat-chip>
-    <input placeholder="New item..."
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="addOnBlur"
-           (matChipInputTokenEnd)="add($event)">
-  </mat-chip-list>
-</mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Items List</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let item of items" (removed)="remove(item)">
+          {{ item }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New item..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
   `,
   standalone: true,
   imports: [
@@ -43,7 +48,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 export class InputsFormComponent {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  items: String[] = []; //This is where the list of Products will be
+  items: String[] = []; //This is where the list of what will be compared will be
+  @Output() itemsChanged: EventEmitter<String[]> = new EventEmitter();
 
   constructor() {}
   ngOnInit(): void {}
@@ -58,6 +64,7 @@ export class InputsFormComponent {
 
     // Clear the input value
     event.chipInput!.clear();
+    this.itemsChanged.emit(this.items);
   }
 
   remove(item: String): void {
@@ -66,6 +73,7 @@ export class InputsFormComponent {
     if (index >= 0) {
       this.items.splice(index, 1);
     }
-  }
 
+    this.itemsChanged.emit(this.items);
+  }
 }
