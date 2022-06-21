@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { InputsFormComponent } from 'src/app/components/inputs-form.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatChipsModule } from '@angular/material/chips';
+import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export interface ICategory {
-  name: string;
-  color: string;
+  name: String;
+  color: String;
+  items: String[];
 }
 
 @Component({
@@ -20,30 +22,36 @@ export interface ICategory {
     ReactiveFormsModule,
     MatChipsModule,
     InputsFormComponent,
+    DragDropModule
   ],
 })
 export class MainPageComponent {
-  items: String[] = []; /* Items passed from the child component */
+  items: String[] = ["test", "awesome", "xmonad", "qtile"]; /* Items passed from the child component */
   categories: ICategory[] = [ /* List of Categories, shall be customizable later with a form, but for now, its a variable */
     {
       name: 'Great',
       color: '#eb3333',
+      items: ["tttt"],
     },
     {
       name: 'Good',
       color: '#e5672a',
+      items: [],
     },
     {
       name: 'Ok',
       color: '#d1bf37',
+      items: [],
     },
     {
       name: 'MEH',
       color: '#329832',
+      items: [],
     },
     {
       name: 'Yuck',
       color: '#3aa3a9',
+      items: [],
     },
   ];
   constructor(private doms: DomSanitizer) {}
@@ -56,6 +64,18 @@ export class MainPageComponent {
 
   itemsChangedHandler(items: String[]) {
     this.items = [...items];
+  }
+
+  onDrop(event: CdkDragDrop<String[]>) {
+    console.log(event);
+   if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
 }

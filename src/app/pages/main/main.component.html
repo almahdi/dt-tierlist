@@ -1,7 +1,7 @@
 <!-- Data Form -->
 <app-inputs-form (itemsChanged)="itemsChangedHandler($event)"></app-inputs-form>
 <!-- Rating Component -->
-<div class="flex relative flex-col text-white bg-black">
+<div class="flex relative flex-col text-white bg-black" cdkDropListGroup>
   <div
     class="absolute top-3 right-3 p-1 transition-all transform hover:text-black hover:bg-white -translate-x-25 bg-white/50"
   >
@@ -16,16 +16,26 @@
       />
     </svg>
   </div>
-  <div *ngFor="let category of categories" class="flex">
+  <div *ngFor="let category of categories; index as i" class="flex">
     <div
       class="w-36 h-36 p-4 text-4xl uppercase flex align-center items-center"
       [style]="getStyle(category)"
     >
       <span> {{ category.name }} </span>
     </div>
-    <div class="col-span-11"></div>
+    <div class="flex"
+      cdkDropList
+      [cdkDropListData]="categories[i].items"
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      <mat-chip *ngFor="let item of category.items" cdkDrag>{{item}}</mat-chip>
+    </div>
   </div>
-  <div class="bg-[#5a1900] h-40 text-4xl flex gap-4 p-3">
-    <mat-chip *ngFor="let item of items">{{item}}</mat-chip>
+  <div class="bg-[#5a1900] h-40 text-4xl flex gap-4 p-3"
+    cdkDropList
+    [cdkDropListData]="items"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <mat-chip *ngFor="let item of items" cdkDrag>{{item}}</mat-chip>
   </div>
 </div>
