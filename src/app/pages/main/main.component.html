@@ -1,9 +1,13 @@
-<!-- End of Appbar -->
-<div class="flex flex-col relative bg-black text-white">
-  <div class="absolute top-3 right-3 transform -translate-x-25 bg-white/50 p-1 hover:bg-white hover:text-black transition-all">
+<!-- Data Form -->
+<app-inputs-form></app-inputs-form>
+<!-- Rating Component -->
+<div class="flex relative flex-col text-white bg-black">
+  <div
+    class="absolute top-3 right-3 p-1 transition-all transform hover:text-black hover:bg-white -translate-x-25 bg-white/50"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
+      class="w-5 h-5"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -12,5 +16,19 @@
       />
     </svg>
   </div>
-  <div *ngFor="let item of items">{{ item }}</div>
+  <div *ngFor="let category of categories" class="flex">
+    <div
+      class="w-36 h-36 p-4 text-4xl uppercase flex align-center items-center"
+      [style]="getStyle(category)"
+    >
+      <span> {{ category.name }} </span>
+    </div>
+    <div class="col-span-11"></div>
+  </div>
+  <div class="bg-[#5a1900] h-40 text-4xl flex gap-4 p-3">
+    <mat-chip class="text-4xl">test</mat-chip>
+    <mat-chip>test</mat-chip>
+    <mat-chip>test</mat-chip>
+    <mat-chip>test</mat-chip>
+  </div>
 </div>

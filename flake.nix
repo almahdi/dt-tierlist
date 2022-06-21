@@ -1,3 +1,5 @@
+### Install Angular LSP -- npm install -g @angular/language-service@next typescript @angular/language-server
+
 {
   inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; };
 

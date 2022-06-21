@@ -1,25 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { InputsFormComponent } from 'src/app/components/inputs-form.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatChipsModule } from '@angular/material/chips';
+
+export interface ICategory {
+  name: string;
+  color: string;
+}
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
+    InputsFormComponent,
+    MatChipsModule,
   ],
 })
-export class MainPageComponent implements OnInit {
-  items = [...Array(100)].map((_, i) => i);
-  constructor() {}
-  ngOnInit(): void {}
-  onSubmit(model: any) {
-    console.log({ model });
+export class MainPageComponent {
+  items: String[] = [];
+  categories: ICategory[] = [
+    {
+      name: 'Great',
+      color: '#eb3333',
+    },
+    {
+      name: 'Good',
+      color: '#e5672a',
+    },
+    {
+      name: 'Ok',
+      color: '#d1bf37',
+    },
+    {
+      name: 'MEH',
+      color: '#329832',
+    },
+    {
+      name: 'Yuck',
+      color: '#3aa3a9',
+    },
+  ];
+  getStyle(category: ICategory) {
+    return this.doms.bypassSecurityTrustStyle(
+      `background-color: ${category.color};`
+    );
   }
+  constructor(private doms: DomSanitizer) {}
 }

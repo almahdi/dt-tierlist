@@ -6,9 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { NavbarComponent } from './components/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
