@@ -19,6 +19,7 @@ npm run start ## Start the dev server
 ### Any other OS
 
 ``` sh
+## Node >=v16 and NPM >=8
 npm install
 npm run start
 ```
