@@ -61,6 +61,7 @@ export class ListComponent {
       items: [],
     },
   ];
+  fullPage = false;
 
   constructor(private doms: DomSanitizer) {}
 
@@ -69,8 +70,6 @@ export class ListComponent {
       `background-color: ${category.color};`
     );
   }
-
-
   onDrop(event: CdkDragDrop<String[]>) {
     console.log(event);
    if (event.previousContainer === event.container) {
@@ -85,5 +84,8 @@ export class ListComponent {
 
   reset() {
     this.categories.forEach(category=>category.items = []);
+  }
+  toggleFullPage() {
+    this.fullPage = !this.fullPage;
   }
 }

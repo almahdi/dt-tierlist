@@ -1,27 +1,31 @@
-# Rating
+# DT Tier List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
+## About the app
+This project was created because [DistroTube](https://distro.tube/) said in one of his videos (https://www.youtube.com/watch?v=xysISs0mcj8) that such app doesn't exist in free and open source form, all of the projects/app that exist are proprietary.
 
-## Development server
+I thought it was a once off video, since I followed DT for a long time, but when he made the [second video](https://www.youtube.com/watch?v=xysISs0mcj8) I had that itch to create a free and open source app that does exactly what he wanted. Instead of using GIMP.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Local Development
 
-## Code scaffolding
+### Using NixOS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+``` sh
+# Allow direnv assuming direnv and flakes are enabled.
+direnv allow
+npm install ## Install npm dependences
+npm run start ## Start the dev server
+```
 
-## Build
+### Any other OS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+``` sh
+npm install
+npm run start
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Future Enhancements
+TODO
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Known Bugs / Issues
+TODO

@@ -1,50 +1,43 @@
-<div class="flex relative flex-col text-white bg-black" cdkDropListGroup>
-  <div
-    class="absolute top-3 right-3 p-1 transition-all transform hover:text-black hover:bg-white -translate-x-25 bg-white/50"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-5 h-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"
-      />
-    </svg>
-  </div>
-  <div class="divide-y divide-y-4">
-    <div *ngFor="let category of categories; index as i" class="flex">
-      <div
-        class="w-36 h-36 p-4 text-4xl uppercase flex align-center items-center"
-        [style]="getStyle(category)"
-      >
-        <span> {{ category.name }} </span>
+<div [ngClass]="{'fixed w-full h-full inset-0 bg-purple-300 z-[100]': fullPage}">
+  <div class="flex relative flex-col text-white bg-black h-full" cdkDropListGroup>
+    <button
+      (click)="toggleFullPage()"
+      class="absolute top-3 right-3 transition-all transform hover:text-black hover:bg-white -translate-x-25 bg-white/50">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+    <div class="divide-y divide-y-4">
+      <div *ngFor="let category of categories; index as i" class="flex">
+        <div
+          class="w-36 h-36 p-4 text-4xl uppercase flex align-center items-center"
+          [style]="getStyle(category)"
+        >
+          <span> {{ category.name }} </span>
+        </div>
+        <div
+          class="flex items-center p-4 gap-3 bg-black grow"
+          cdkDropList
+          [cdkDropListData]="categories[i].items"
+          (cdkDropListDropped)="onDrop($event)"
+          cdkDropListOrientation="horizontal"
+        >
+          <span
+            class="text-4xl bg-white/10 px-1 h-16 flex items-center"
+            *ngFor="let item of category.items"
+            cdkDrag
+            >{{ item }}</span>
+        </div>
       </div>
       <div
-        class="flex items-center p-4 gap-3 bg-black grow"
+        class="bg-[#5a1900] min-h-[10rem] text-4xl flex gap-4 p-3 transition-all duration-75 h-full"
         cdkDropList
-        [cdkDropListData]="categories[i].items"
-        (cdkDropListDropped)="onDrop($event)"
+        [cdkDropListData]="items"
         cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="onDrop($event)"
       >
-        <span
-          class="text-4xl bg-white/10 px-1 h-16 flex items-center"
-          *ngFor="let item of category.items"
-          cdkDrag
-          >{{ item }}</span>
+        <span class="text-4xl bg-white/10 px-1 h-16 flex items-center" *ngFor="let item of items" cdkDrag>
+          {{ item }}
+        </span>
       </div>
-    </div>
-    <div
-      class="bg-[#5a1900] h-40 text-4xl flex gap-4 p-3 transition-all duration-75"
-      cdkDropList
-      [cdkDropListData]="items"
-      cdkDropListOrientation="horizontal"
-      (cdkDropListDropped)="onDrop($event)"
-    >
-      <span class="text-4xl bg-white/10 px-1 h-16 flex items-center" *ngFor="let item of items" cdkDrag>
-        {{ item }}
-      </span>
     </div>
   </div>
 </div>
