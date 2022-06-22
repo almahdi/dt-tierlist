@@ -24,7 +24,7 @@ npm run start
 ```
 
 ## Editors used to create the app
-* Gitpod used with my Tab S8 Ultra to initiate the project.
+* Gitpod used with my Tab S8 Ultra to initiate the project. I usually use my tablet to code on the go.
 * Emacs (Doom Emacs) -- Its the ultimate editor of all times.
 
 ## Future Enhancements
@@ -32,3 +32,6 @@ TODO
 
 ## Known Bugs / Issues
 TODO
+
+## License
+This app is licensed under the GPLv3.
