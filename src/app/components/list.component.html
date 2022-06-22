@@ -1,6 +1,3 @@
-<!-- Data Form -->
-<app-inputs-form (itemsChanged)="itemsChangedHandler($event)"></app-inputs-form>
-<!-- Rating Component -->
 <div class="flex relative flex-col text-white bg-black" cdkDropListGroup>
   <div
     class="absolute top-3 right-3 p-1 transition-all transform hover:text-black hover:bg-white -translate-x-25 bg-white/50"
@@ -31,12 +28,11 @@
         (cdkDropListDropped)="onDrop($event)"
         cdkDropListOrientation="horizontal"
       >
-        <mat-chip
-          class="text-4xl"
+        <span
+          class="text-4xl bg-white/10 px-1 h-16 flex items-center"
           *ngFor="let item of category.items"
           cdkDrag
-          >{{ item }}</mat-chip
-        >
+          >{{ item }}</span>
       </div>
     </div>
     <div
@@ -46,7 +42,9 @@
       cdkDropListOrientation="horizontal"
       (cdkDropListDropped)="onDrop($event)"
     >
-      <div mat-button *ngFor="let item of items" cdkDrag>{{ item }}</div>
+      <span class="text-4xl bg-white/10 px-1 h-16 flex items-center" *ngFor="let item of items" cdkDrag>
+        {{ item }}
+      </span>
     </div>
   </div>
 </div>
